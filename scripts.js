@@ -10,7 +10,7 @@ function abortMission(shuttle) {
     shuttle.background.style.backgroundColor = "green";
     shuttle.height.innerHTML = "0";
     shuttle.status.innerHTML = "Mission aborted.";
-    shuttle.chatter[2].innerHTML = "Game over, man, game over!";
+    //shuttle.chatter[2].innerHTML = "Game over, man, game over!";
 
 }
 
@@ -24,7 +24,7 @@ function landMission(shuttle){
     shuttle.background.style.backgroundColor = "green";
     shuttle.height.innerHTML = "0";
     shuttle.status.innerHTML = "The shuttle has landed.";
-    shuttle.chatter[2].innerHTML = "Houston, mission success";
+    //shuttle.chatter[2].innerHTML = "Houston, mission success";
 
 }
 
@@ -35,7 +35,7 @@ function flyMission(shuttle) {
     shuttle.rocket.style.top = shuttle.verticalPos + "px";
     shuttle.height.innerHTML = "10,000";
     shuttle.background.style.backgroundColor = "blue";
-    shuttle.chatter[2].innerHTML = "Houston, we have liftoff";
+    //shuttle.chatter[2].innerHTML = "Houston, we have liftoff";
 
     shuttle.controls[0].addEventListener("click", function (event) {
 
@@ -74,7 +74,7 @@ function flyMission(shuttle) {
     shuttle.controls[2].addEventListener("click", function (event) {
         
         try {
-            if (shuttle.horizontalPos === 550) {
+            if (shuttle.horizontalPos > 540) {
                 throw Error("You cannot leave the game area!");
             } else {
                 shuttle.horizontalPos += 10;
@@ -129,7 +129,7 @@ function init () {
         background: document.getElementById("shuttleBackground"),
         rocket: document.getElementById("rocket"),
         verticalPos: 250,
-        horizontalPos: 250,
+        horizontalPos: 275,
         chatter: document.getElementsByTagName("p")
         
     };
