@@ -56,7 +56,7 @@ function flyMission(shuttle) {
     shuttle.controls[1].addEventListener("click", function (event) {
         
         try {
-            if (shuttle.verticalPos >= (document.querySelector("div[id=shuttleBackground]").clientWidth / 2) - (document.querySelector("img").clientWidth)) {
+            if (shuttle.verticalPos >= (document.querySelector("div[id=shuttleBackground]").clientHeight) - (document.querySelector("img").clientHeight)) {
                 throw Error("You cannot leave the game area!");
             } else {
                 shuttle.verticalPos += 50;
@@ -129,7 +129,7 @@ function init () {
         background: document.getElementById("shuttleBackground"),
         rocket: document.getElementById("rocket"),
         verticalPos: (document.querySelector("div[id=shuttleBackground]").clientHeight) - (document.querySelector("img").clientHeight),
-        horizontalPos: (document.querySelector("div[id=shuttleBackground]").clientWidth / 2) - (document.querySelector("img").clientWidth),
+        horizontalPos: (document.querySelector("div[id=shuttleBackground]").clientWidth / 2),
         chatter: document.getElementsByTagName("p")
         
     };
