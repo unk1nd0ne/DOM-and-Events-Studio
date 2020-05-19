@@ -90,7 +90,7 @@ function flyMission(shuttle) {
     shuttle.controls[3].addEventListener("click", function (event) {
         
         try {
-        if (shuttle.horizontalPos < 0) {
+        if (shuttle.horizontalPos < -5) {
             throw Error("You cannot leave the game area!");
         } else {
             shuttle.horizontalPos -= 10;
