@@ -3,25 +3,29 @@
 
 function abortMission(shuttle) {
     shuttle.flying = false;
-    shuttle.land.disabled = true;
-    shuttle.abort.disabled = true;
-    shuttle.takeOff.disabled = true;
+    for (button of shuttle.controls){
+        button.disabled = true;
+    }
     shuttle.rocket.style.top = "250px";
     shuttle.background.style.backgroundColor = "green";
     shuttle.height.innerHTML = "0";
     shuttle.status.innerHTML = "Mission aborted.";
+    shuttle.chatter[2].innerHTML = "Game over, man, game over!";
+
 }
 
 function landMission(shuttle){
     alert("The shuttle is landing. Landing gear engaged.")
     shuttle.flying = false;
-    shuttle.land.disabled = true;
-    shuttle.takeOff.disabled = true;
-    shuttle.abort.disabled = true;
+    for (button of shuttle.controls){
+        button.disabled = true;
+    }
     shuttle.rocket.style.top = "250px";
     shuttle.background.style.backgroundColor = "green";
     shuttle.height.innerHTML = "0";
     shuttle.status.innerHTML = "The shuttle has landed.";
+    shuttle.chatter[2].innerHTML = "Houston, mission success";
+
 }
 
 function flyMission(shuttle) {
@@ -31,36 +35,71 @@ function flyMission(shuttle) {
     shuttle.rocket.style.top = shuttle.verticalPos + "px";
     shuttle.height.innerHTML = "10,000";
     shuttle.background.style.backgroundColor = "blue";
+    shuttle.chatter[2].innerHTML = "Houston, we have liftoff";
 
     shuttle.controls[0].addEventListener("click", function (event) {
-        
-        shuttle.verticalPos -= 50;
-        shuttle.rocket.style.top = shuttle.verticalPos + "px";
-        shuttle.height.innerHTML = (Number(shuttle.height.innerHTML.replace(',','')) + 10000).toLocaleString();
-    
 
+        try {
+            if (shuttle.verticalPos === 0) {
+                throw Error("You cannot leave the game area!");
+            } else {
+                shuttle.verticalPos -= 50;
+                shuttle.rocket.style.top = shuttle.verticalPos + "px";
+                shuttle.height.innerHTML = (Number(shuttle.height.innerHTML.replace(',','')) + 10000).toLocaleString();
+            }
+                
+            } catch (error) {
+                alert(error.message);
+            }   
     });
 
     shuttle.controls[1].addEventListener("click", function (event) {
         
-        shuttle.verticalPos += 50;
-        shuttle.rocket.style.top = shuttle.verticalPos + "px";
-        shuttle.height.innerHTML = (Number(shuttle.height.innerHTML.replace(',','')) - 10000).toLocaleString();
+        try {
+            if (shuttle.verticalPos === 250) {
+                throw Error("You cannot leave the game area!");
+            } else {
+                shuttle.verticalPos += 50;
+                shuttle.rocket.style.top = shuttle.verticalPos + "px";
+                shuttle.height.innerHTML = (Number(shuttle.height.innerHTML.replace(',','')) - 10000).toLocaleString();
+            }
+                
+            } catch (error) {
+                alert(error.message);
+            }
+       
 
     });
 
     shuttle.controls[2].addEventListener("click", function (event) {
         
-        shuttle.horizontalPos += 10;
-        shuttle.rocket.style.left = shuttle.horizontalPos + "px";
+        try {
+            if (shuttle.horizontalPos === 550) {
+                throw Error("You cannot leave the game area!");
+            } else {
+                shuttle.horizontalPos += 10;
+                shuttle.rocket.style.left = shuttle.horizontalPos + "px";
+            }
+                
+            } catch (error) {
+                alert(error.message);
+            }
 
     });
 
     shuttle.controls[3].addEventListener("click", function (event) {
         
-    shuttle.horizontalPos -= 10;
-    shuttle.rocket.style.left = shuttle.horizontalPos + "px";
-
+        try {
+        if (shuttle.horizontalPos < 0) {
+            throw Error("You cannot leave the game area!");
+        } else {
+            shuttle.horizontalPos -= 10;
+            shuttle.rocket.style.left = shuttle.horizontalPos + "px";
+        }
+            
+        } catch (error) {
+            alert(error.message);
+        }
     });
 
     shuttle.land.addEventListener("click", function (event) {
@@ -81,7 +120,6 @@ function flyMission(shuttle) {
 
 function init () {
     let shuttle = {
-        flying: false,
         controls: document.getElementsByTagName("button"),
         takeOff: document.getElementById("takeoff"),
         land: document.getElementById("landing"),
@@ -91,21 +129,21 @@ function init () {
         background: document.getElementById("shuttleBackground"),
         rocket: document.getElementById("rocket"),
         verticalPos: 250,
-        horizontalPos: 250
+        horizontalPos: 250,
+        chatter: document.getElementsByTagName("p")
         
     };
     shuttle.rocket.style.position = "absolute";
     shuttle.rocket.style.top = shuttle.verticalPos + "px";
     shuttle.rocket.style.left = shuttle.horizontalPos + "px";
-
     shuttle.land.disabled = true;
     shuttle.abort.disabled = true;
     
     shuttle.takeOff.addEventListener("click", function (event) {
         if (window.confirm("Confirm that the shuttle is ready for takeoff.")) {
+            shuttle.takeOff.disabled = true;
             shuttle.land.disabled = false;
             shuttle.abort.disabled = false;
-            shuttle.flying = true;
             flyMission(shuttle);
         }
     });
