@@ -40,7 +40,7 @@ function flyMission(shuttle) {
     shuttle.controls[0].addEventListener("click", function (event) {
 
         try {
-            if (shuttle.verticalPos === 0) {
+            if (shuttle.verticalPos <= 0) {
                 throw Error("You cannot leave the game area!");
             } else {
                 shuttle.verticalPos -= 50;
@@ -56,7 +56,7 @@ function flyMission(shuttle) {
     shuttle.controls[1].addEventListener("click", function (event) {
         
         try {
-            if (shuttle.verticalPos === 250) {
+            if (shuttle.verticalPos >= (document.querySelector("div[id=shuttleBackground]").clientWidth / 2) - (document.querySelector("img").clientWidth)) {
                 throw Error("You cannot leave the game area!");
             } else {
                 shuttle.verticalPos += 50;
@@ -74,7 +74,7 @@ function flyMission(shuttle) {
     shuttle.controls[2].addEventListener("click", function (event) {
         
         try {
-            if (shuttle.horizontalPos > 480) {
+            if (shuttle.horizontalPos > (document.querySelector("div[id=shuttleBackground]").clientWidth) - (document.querySelector("img").clientWidth)) {
                 throw Error("You cannot leave the game area!");
             } else {
                 shuttle.horizontalPos += 10;
@@ -128,14 +128,16 @@ function init () {
         height: document.getElementById("spaceShuttleHeight"),
         background: document.getElementById("shuttleBackground"),
         rocket: document.getElementById("rocket"),
-        verticalPos: 250,
-        horizontalPos: 250,
+        verticalPos: (document.querySelector("div[id=shuttleBackground]").clientHeight) - (document.querySelector("img").clientHeight),
+        horizontalPos: (document.querySelector("div[id=shuttleBackground]").clientWidth / 2) - (document.querySelector("img").clientWidth),
         chatter: document.getElementsByTagName("p")
         
     };
-    // alert(document.querySelector("div[id=shuttleBackground]").clientHeight)
-    // alert(document.querySelector("img").clientHeight)
+    //alert(document.querySelector("div[id=shuttleBackground]").clientHeight)
+    //alert(shuttle.rocket.style.left)
 
+
+    //verticalPos
     shuttle.rocket.style.position = "absolute";
     shuttle.rocket.style.top = shuttle.verticalPos + "px";
     shuttle.rocket.style.left = shuttle.horizontalPos + "px";

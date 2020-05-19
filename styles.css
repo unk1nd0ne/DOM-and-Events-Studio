@@ -1,7 +1,6 @@
 #shuttleBackground {
     background-color: green;
     display: inline-block;
-    height: 320px;
-    width: 550px;
+    height: 80%;
+    width: 40%;
 }
-
