@@ -27,14 +27,14 @@ function landMission(shuttle){
 function flyMission(shuttle) {
     
     shuttle.status.innerHTML = "Shuttle in flight.";
-    shuttle.verticalPos = 100;
+    shuttle.verticalPos = 200;
     shuttle.rocket.style.top = shuttle.verticalPos + "px";
     shuttle.height.innerHTML = "10,000";
     shuttle.background.style.backgroundColor = "blue";
 
     shuttle.controls[0].addEventListener("click", function (event) {
         
-        shuttle.verticalPos -= 10;
+        shuttle.verticalPos -= 50;
         shuttle.rocket.style.top = shuttle.verticalPos + "px";
         shuttle.height.innerHTML = (Number(shuttle.height.innerHTML.replace(',','')) + 10000).toLocaleString();
     
@@ -43,7 +43,7 @@ function flyMission(shuttle) {
 
     shuttle.controls[1].addEventListener("click", function (event) {
         
-        shuttle.verticalPos += 10;
+        shuttle.verticalPos += 50;
         shuttle.rocket.style.top = shuttle.verticalPos + "px";
         shuttle.height.innerHTML = (Number(shuttle.height.innerHTML.replace(',','')) - 10000).toLocaleString();
 
