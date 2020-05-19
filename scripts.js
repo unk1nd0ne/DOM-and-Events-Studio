@@ -74,7 +74,7 @@ function flyMission(shuttle) {
     shuttle.controls[2].addEventListener("click", function (event) {
         
         try {
-            if (shuttle.horizontalPos > 540) {
+            if (shuttle.horizontalPos > 480) {
                 throw Error("You cannot leave the game area!");
             } else {
                 shuttle.horizontalPos += 10;
@@ -129,10 +129,13 @@ function init () {
         background: document.getElementById("shuttleBackground"),
         rocket: document.getElementById("rocket"),
         verticalPos: 250,
-        horizontalPos: 275,
+        horizontalPos: 250,
         chatter: document.getElementsByTagName("p")
         
     };
+    // alert(document.querySelector("div[id=shuttleBackground]").clientHeight)
+    // alert(document.querySelector("img").clientHeight)
+
     shuttle.rocket.style.position = "absolute";
     shuttle.rocket.style.top = shuttle.verticalPos + "px";
     shuttle.rocket.style.left = shuttle.horizontalPos + "px";
