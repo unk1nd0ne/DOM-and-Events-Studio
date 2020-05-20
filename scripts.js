@@ -129,13 +129,10 @@ function init () {
         background: document.getElementById("shuttleBackground"),
         rocket: document.getElementById("rocket"),
         verticalPos: (document.querySelector("div[id=shuttleBackground]").clientHeight) - (document.querySelector("img").clientHeight),
-        horizontalPos: (document.querySelector("div[id=shuttleBackground]").clientWidth / 2),
+        horizontalPos: (document.querySelector("div[id=shuttleBackground]").clientWidth / 2) - (document.querySelector("img").clientWidth),
         chatter: document.getElementsByTagName("p")
         
     };
-    //alert(document.querySelector("div[id=shuttleBackground]").clientHeight)
-    //alert(shuttle.rocket.style.left)
-
 
     //verticalPos
     shuttle.rocket.style.position = "absolute";
