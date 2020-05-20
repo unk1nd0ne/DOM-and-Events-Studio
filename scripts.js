@@ -129,7 +129,7 @@ function init () {
         background: document.getElementById("shuttleBackground"),
         rocket: document.getElementById("rocket"),
         verticalPos: (document.querySelector("div[id=shuttleBackground]").clientHeight) - (document.querySelector("img").clientHeight),
-        horizontalPos: (document.querySelector("div[id=shuttleBackground]").clientWidth / 2) - (document.querySelector("img").clientWidth),
+        horizontalPos: (document.querySelector("div[id=shuttleBackground]").clientWidth / 2) - (document.querySelector("img").clientWidth / 2),
         chatter: document.getElementsByTagName("p")
         
     };
